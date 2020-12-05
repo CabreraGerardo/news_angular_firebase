@@ -1,0 +1,59 @@
+<div [formGroup]="form">
+
+    <div class="form-group">
+        <label for="newTitle">Título</label>
+        <input formControlName="title" type="text" class="form-control" id="newTitle" placeholder="Título de la Noticia">
+        <div *ngIf="this.form.get('title').touched && this.form.get('title').invalid"> <!-- hasError devuelve un valor booleano, true si tien un error y false en caso contrario  -->
+            <small *ngIf="this.form.get('title').getError('required')"> El título es requerido </small>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="exampleFormControlSelect1">Categoría</label>
+        <select formControlName="category" class="form-control" id="exampleFormControlSelect1">
+          <option>Deportes</option>
+          <option>Internacional</option>
+          <option>Finanzas</option>
+          <option>Ciencia</option>
+        </select>
+        <div *ngIf="this.form.get('category').touched && this.form.get('category').invalid"> <!-- hasError devuelve un valor booleano, true si tien un error y false en caso contrario  -->
+            <small *ngIf="this.form.get('category').getError('required')"> La categoría es requerida </small>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-3">            
+            <div class="form-group" style="border-radius: 50%; display: flex; flex-direction: column; align-items: center;">
+                <img 
+                    [src]="img" 
+                    alt=""
+                    class="img-fluid rounded m-5"
+                    width="350px" height="350px">
+                    <div class="custom-file mb-3">
+                        <input type="file" class="custom-file-input" id="customFile" name="filename" (change)="onChange($event)">
+                        <label class="custom-file-label" for="customFile">Elegir archivo</label>
+                    </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="form-group">
+                <label for="description">Contraseña</label>
+                <textarea rows="15" formControlName="description" type="text" class="form-control" id="description" placeholder="Escriba la noticia"></textarea>
+                <div *ngIf="this.form.get('description').touched && this.form.get('description').invalid">
+                    Debe escribir la noticia
+                </div>
+            </div>
+        </div>
+    </div>    
+
+    <div *ngIf="this.n == null; else newUpdate;" class="d-flex justify-content-end">
+        <button (click)="onAdd()" type="submit" class="btn btn-success"> Agregar </button>
+    </div>
+    <ng-template #newUpdate>
+        <div class="d-flex justify-content-end">
+            <button (click)="onUpdate()" type="submit" class="btn btn-success"> Actualizar </button>
+            <button (click)="cancelEdit()" type="submit" class="btn btn-secondary"> Cancelar </button>
+        </div>        
+    </ng-template>
+</div>
+

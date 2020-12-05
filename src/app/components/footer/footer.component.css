@@ -1,0 +1,8 @@
+footer{    
+    background-color: solid lightgray;
+    position: fixed;
+    z-index: 1;
+    bottom: 0;
+    left: 0;
+    overflow-x: hidden;
+}

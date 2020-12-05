@@ -1,0 +1,17 @@
+<div class="container p-3 mb-5" style="border: 1px solid lightgrey; border-radius: 5px;">
+    <div class="d-flex flex-row" *ngIf="!edit; else editNew;">
+        <img class="rounded img-fluid" src="{{n.image ? n.image : 'https://w7.pngwing.com/pngs/60/93/png-transparent-computer-icons-daily-news-and-analysis-newspaper-news-media-others-miscellaneous-blue-text.png'}}" style="max-height: 200px; width: 200px;"/>
+        <div class="flex-column ml-4">
+            <h2>{{ n.title }}</h2>
+            <p>{{ n.description }}</p>
+        </div>
+        <div class="row d-flex justify-content-end align-items-end w-100 mr-3">
+            <button class="btn btn-info mr-2" (click)="edit = true"><i class="fas fa-pen"></i></button>
+            <button class="btn btn-danger" (click)="onDelete(n._id)"><i class="fas fa-trash"></i></button>
+        </div>
+    </div>
+
+    <ng-template #editNew>
+        <app-add-new [n]="n" (canceledEdit)="cancelEdit($event)"></app-add-new>
+    </ng-template>
+</div>

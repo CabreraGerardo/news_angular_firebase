@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "jyn-benefactor": {
+      "hosting": {
+        "news": [
+          "jyn-benefactor"
+        ]
+      }
+    }
+  }
+}
